@@ -28,5 +28,14 @@ jobs:
             **/.github/**
             **/tests/**
             **/.env.example
-            **/README.md
+            **/README.md# 
+      - name: Deploy public folder
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./public/          # <-- Sube solo la carpeta public
+          server-dir: /public_html/     # <-- Al directorio raíz web de tu hosting
+          # (Ajusta /public_html/ si tu dominio principal no está ahí)
       
